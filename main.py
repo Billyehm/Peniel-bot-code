@@ -13,7 +13,7 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 token = '7765823701:AAHOvzXghdY3JE2t3VUJ7gvEOGH_E1m4-5k'
-WEB_HOOK = 'your url/webhook'
+WEB_HOOK = 'https://peniel-bot-code.vercel.app/webhook'
 bot=Bot(token=token,default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 dp= Dispatcher(bot)
 router = Router()
