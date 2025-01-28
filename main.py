@@ -50,7 +50,7 @@ async def handle_it(callback_query:CallbackQuery):
 @app.post('/webhook')
 async def handle_webhook(request:Request):
     try:
-        json_data= request.json()
+        json_data = await request.json()
         update = Update(**json_data)
         await dp.feed_update(bot,update)
     except Exception:
