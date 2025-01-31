@@ -28,19 +28,19 @@ async def lifespan(app:FastAPI):
     await bot.session.close()
 
 #NOTE - Fastapi initialization 
-app = FastAPI(lifespan=lifespan,title="William's Fraud",debug=True)
+app = FastAPI(lifespan=lifespan,title="William Bot",debug=True)
 
 
 def main_menu()->InlineKeyboardMarkup:
-    btn1= InlineKeyboardButton(text='Enter wetin dey your mind',url='wetin dey your mind WIlliam',callback_data='Your mind')
-    btn2= InlineKeyboardButton(text='Fraudster enter your mind',url='Your mind',callback_data='Your mind')
+    btn1= InlineKeyboardButton(text='About',url='wetin dey your mind WIlliam',callback_data='my about dey i go put am later')
+    btn2= InlineKeyboardButton(text='Launch app',url='https://telegram-bot-blond-omega.vercel.app/',callback_data='i dont think there should be a call back here')
     builder = InlineKeyboardBuilder()
     builder.row(btn1,btn2)
     return builder.as_markup()
     
 @router.message(CommandStart())
 async def start_command(msg:Message)-> None:
-    await bot.send_message(chat_id=msg.from_user.id,text='wrt your mind',reply_markup=main_menu())
+    await bot.send_message(chat_id=msg.from_user.id,text='Welcome to the Bot choose an option below',reply_markup=main_menu())
     
 @router.callback_query()
 async def handle_it(callback_query:CallbackQuery):
