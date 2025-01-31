@@ -38,6 +38,17 @@ def main_menu()->InlineKeyboardMarkup:
     builder.row(btn1,btn2)
     return builder.as_markup()
 
+@router.message(CommandStart())
+async def start_command(msg:Message)-> None:
+    await bot.send_message(chat_id=msg.from_user.id,text='Welcome to the Bot choose an option below',reply_markup=main_menu())
+    
+@router.callback_query()
+async def callback_query_handler(callback_query:CallbackQuery):
+    #TODO- Handle callback where neccesary
+    if callback_query.data=='about':
+        await bot.send_message(chat_id=callback_query.from_user.id,text='Dadddyyy')
+    await callback_query.answer()
+
 @app.post('/webhook')
 async def handle_webhook(request:Request):
     try:
@@ -49,16 +60,5 @@ async def handle_webhook(request:Request):
     return {'OK':True}
 
     
-@router.message(CommandStart())
-async def start_command(msg:Message)-> None:
-    await bot.send_message(chat_id=msg.from_user.id,text='Welcome to the Bot choose an option below',reply_markup=main_menu())
-    
-@router.callback_query()
-async def handle_it(callback_query:CallbackQuery):
-    #TODO- Handle callback where neccesary
-    if callback_query.data == 'about':
-        await bot.send_message(chat_id=callback_query.from_user.id,text='Ashawo')
-    else:
-        await bot.send_message(chat_id=callback_query.from_user.id,text='Fvck me daddy')
-    await callback_query.answer(text='Ashawo,Yess daddyyyy!!!',alert=True)
+
 
