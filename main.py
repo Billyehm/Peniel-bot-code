@@ -1,4 +1,4 @@
-from fastapi import FastAPI,HTTPException,Depends
+from fastapi import FastAPI,HTTPException
 from aiogram import Dispatcher,Router,Bot
 from aiogram.filters import CommandStart
 from aiogram.types import InlineKeyboardButton,InlineKeyboardMarkup
@@ -13,7 +13,7 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 token = '7765823701:AAHOvzXghdY3JE2t3VUJ7gvEOGH_E1m4-5k'
-WEB_HOOK = 'https://peniel-bot-code-9aptqrjig-williams-projects-41e575ef.vercel.app/webhook'
+WEB_HOOK = 'https://68bf-2c0f-2a80-c6-b810-d8a7-7b56-a6e8-dfed.ngrok-free.app/webhook'
 bot=Bot(token=token,default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 dp= Dispatcher(bot=bot)
 router = Router()
@@ -32,11 +32,22 @@ app = FastAPI(lifespan=lifespan,title="William Bot",debug=True)
 
 
 def main_menu()->InlineKeyboardMarkup:
-    btn1= InlineKeyboardButton(text='About',url='wetin dey your mind WIlliam',callback_data='my about dey i go put am later')
-    btn2= InlineKeyboardButton(text='Launch app',url='https://telegram-bot-blond-omega.vercel.app/',callback_data='i dont think there should be a call back here')
+    btn1= InlineKeyboardButton(text='About',callback_data='about')
+    btn2= InlineKeyboardButton(text='Launch app',url='https://telegram-bot-blond-omega.vercel.app/',)
     builder = InlineKeyboardBuilder()
     builder.row(btn1,btn2)
     return builder.as_markup()
+
+@app.post('/webhook')
+async def handle_webhook(request:Request):
+    try:
+        json_data = await request.json()
+        update = Update(**json_data)
+        await dp.feed_update(bot, update)
+    except Exception:
+        return HTTPException(status_code=400,detail='Invalid payload')
+    return {'OK':True}
+
     
 @router.message(CommandStart())
 async def start_command(msg:Message)-> None:
@@ -45,14 +56,9 @@ async def start_command(msg:Message)-> None:
 @router.callback_query()
 async def handle_it(callback_query:CallbackQuery):
     #TODO- Handle callback where neccesary
-    ...
+    if callback_query.data == 'about':
+        await bot.send_message(chat_id=callback_query.from_user.id,text='Ashawo')
+    else:
+        await bot.send_message(chat_id=callback_query.from_user.id,text='Fvck me daddy')
+    await callback_query.answer(text='Ashawo,Yess daddyyyy!!!',alert=True)
 
-@app.post('/webhook')
-async def handle_webhook(request:Request):
-    try:
-        json_data = await request.json()
-        update = Update(**json_data)
-        await dp.feed_update(bot,update)
-    except Exception:
-        return HTTPException(status_code=400,detail='Invalid payload')
-    return {'OK':True}
