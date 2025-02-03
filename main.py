@@ -13,7 +13,7 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 token = '7765823701:AAHOvzXghdY3JE2t3VUJ7gvEOGH_E1m4-5k'
-WEB_HOOK = 'https://68bf-2c0f-2a80-c6-b810-d8a7-7b56-a6e8-dfed.ngrok-free.app/webhook'
+WEB_HOOK = 'https://wills-birthday-gift.onrender.com/webhook'
 bot=Bot(token=token,default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 dp= Dispatcher(bot=bot)
 router = Router()
