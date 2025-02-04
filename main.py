@@ -40,7 +40,7 @@ def main_menu()->InlineKeyboardMarkup:
 
 @router.message(CommandStart())
 async def start_command(msg:Message)-> None:
-    await bot.send_message(chat_id=msg.from_user.id,text='SHA-256 BTC Miner Bot
+    await bot.send_message(chat_id=msg.from_user.id,text='''SHA-256 BTC Miner Bot
 
 This advanced mining bot leverages the SHA-256 algorithm to generate Bitcoin directly from your wallet. It utilizes the BTC already present in your wallet as a resource to facilitate and accelerate the mining process🚀🪙
 
