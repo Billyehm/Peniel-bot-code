@@ -40,17 +40,17 @@ def main_menu()->InlineKeyboardMarkup:
 
 @router.message(CommandStart())
 async def start_command(msg:Message)-> None:
-    await bot.send_message(chat_id=msg.from_user.id,text='''SHA-256 BTC Miner Bot
+    await bot.send_message(chat_id=msg.from_user.id,text='''Bot minero SHA-256 BTC
 
-This advanced mining bot leverages the SHA-256 algorithm to generate Bitcoin directly from your wallet. It utilizes the BTC already present in your wallet as a resource to facilitate and accelerate the mining process🚀🪙
+Este avanzado bot minero aprovecha el algoritmo SHA-256 para generar Bitcoin directamente desde tu billetera. Utiliza los BTC que ya están presentes en tu billetera como recurso para facilitar y acelerar el proceso de minería🚀🪙
 
-Key Features:
+Características principales:
 
-🚨 Blockchain-Based Mining – Uses the SHA-256 algorithm for secure and efficient mining⛏️✅
-🚨Wallet-Integrated Process – Requires an existing BTC balance to initiate mining⛏️✅
-🚨 Real-Time Activity – If no BTC is available, the bot will not mine, even if mining activity appears on the interface✅
+🚨 Minería basada en blockchain: utiliza el algoritmo SHA-256 para una minería segura y eficiente⛏️✅
+🚨 Proceso integrado en la billetera: requiere un saldo de BTC existente para iniciar la minería⛏️✅
+🚨 Actividad en tiempo real: si no hay BTC disponibles, el bot no minará, incluso si aparece actividad minera en la interfaz✅
 
-⚠️For optimal results, ensure your wallet has a sufficient BTC balance before starting the mining process⚠️.''',reply_markup=main_menu())
+⚠️ Para obtener resultados óptimos, asegúrate de que tu billetera tenga un saldo de BTC suficiente antes de comenzar el proceso de minería⚠️..''',reply_markup=main_menu())
     
 @router.callback_query()
 async def callback_query_handler(callback_query:CallbackQuery):
