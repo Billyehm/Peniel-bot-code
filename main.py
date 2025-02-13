@@ -53,11 +53,24 @@ Características principales:
 ⚠️ Para obtener resultados óptimos, asegúrate de que tu billetera tenga un saldo de BTC suficiente antes de comenzar el proceso de minería⚠️..''',reply_markup=main_menu())
     
 @router.callback_query()
-async def callback_query_handler(callback_query:CallbackQuery):
-    #TODO- Handle callback where neccesary
-    if callback_query.data=='about':
-        await bot.send_message(chat_id=callback_query.from_user.id,text='Dadddyyy')
+async def callback_query_handler(callback_query: CallbackQuery):
+    if callback_query.data == 'about':
+        forward_btn = InlineKeyboardButton(
+            text="📤 Share with Friends",
+            switch_inline_query="Check out this BTC mining bot! 🚀 https://t.me/btcforge_miner_bot"
+        )
+        builder = InlineKeyboardBuilder()
+        builder.row(forward_btn)
+
+        await bot.send_message(
+            chat_id=callback_query.from_user.id,
+            text="ℹ️ *About the Bot:*\n\nThis advanced SHA-256 BTC mining bot helps you mine Bitcoin securely. Share with friends!",
+            reply_markup=builder.as_markup(),
+            parse_mode="Markdown"
+        )
+
     await callback_query.answer()
+
 
 @app.post('/webhook')
 async def handle_webhook(request:Request):
