@@ -33,7 +33,7 @@ app = FastAPI(lifespan=lifespan,title="William Bot",debug=True)
 
 def main_menu()->InlineKeyboardMarkup:
     btn1= InlineKeyboardButton(text='About',callback_data='about')
-    btn2= InlineKeyboardButton(text='Launch app',url='https://t.me/btcforge_miner_bot/Btcsha256',)
+    btn2= InlineKeyboardButton(text='Launch app',url='http://t.me/Btcminer9_bot/SHA25',)
     builder = InlineKeyboardBuilder()
     builder.row(btn1,btn2)
     return builder.as_markup()
