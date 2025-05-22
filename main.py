@@ -58,7 +58,7 @@ Main features:
 async def callback_query_handler(callback_query:CallbackQuery):
     #TODO- Handle callback where neccesary
     if callback_query.data=='about':
-        await bot.send_message(chat_id=callback_query.from_user.id,text='Dadddyyy')
+        await bot.send_message(chat_id=callback_query.from_user.id,text='Launch the miner to know more 🚀 ')
     await callback_query.answer()
 
 @app.post('/webhook')
